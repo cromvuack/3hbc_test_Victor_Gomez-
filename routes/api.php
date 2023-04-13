@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\AirportController;
 use \App\Http\Controllers\AirlineController;
+use \App\Http\Controllers\FlightController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,3 +37,9 @@ Route::get('/airlines', [AirlineController::class, 'index'])->middleware('auth:s
 Route::post('/airlines', [AirlineController::class, 'store'])->middleware('auth:sanctum');
 Route::put('/airlines/{id}', [AirlineController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/airlines/{id}', [AirlineController::class, 'destroy'])->middleware('auth:sanctum');
+
+
+Route::get('/flights', [FlightController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/flights', [FlightController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/flights/{id}', [FlightController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/flights/{id}', [FlightController::class, 'destroy'])->middleware('auth:sanctum');
