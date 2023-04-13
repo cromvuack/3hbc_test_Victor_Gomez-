@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AuthController;
+use \App\Http\Controllers\AirportController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,3 +23,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/user-info', [AuthController::class, 'userInfo'])->middleware('auth:sanctum');
+
+Route::get('/airports', [AirportController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/airports', [AirportController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/airports/{id}', [AirportController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/airports/{id}', [AirportController::class, 'destroy'])->middleware('auth:sanctum');
