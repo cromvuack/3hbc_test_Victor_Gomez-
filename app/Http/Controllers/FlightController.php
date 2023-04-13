@@ -12,8 +12,10 @@ class FlightController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+      $this->authorize('admin',Flight::class, $request->user());
       $flights = Flight::with('airportDeparture', 'airportArrival', 'airline')->get();
       return $flights;
     }
@@ -36,6 +38,7 @@ class FlightController extends Controller
      */
     public function store(Request $request)
     {
+      $this->authorize('admin',Flight::class, $request->user());
       $flight = new Flight();
       $flight->code = $request->code;
       $flight->type = $request->type;
@@ -79,6 +82,7 @@ class FlightController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('admin',Flight::class, $request->user());
         $flight = Flight::findOrFail($request->id);
         $flight->code = $request->code;
         $flight->type = $request->type;
@@ -99,6 +103,7 @@ class FlightController extends Controller
      */
     public function destroy($id)
     {
+      $this->authorize('admin',Flight::class, $request->user());
       $flight = Flight::destroy($request->id);
       return $airport;
     }
